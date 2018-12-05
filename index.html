@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 4: design patterns</title>
+  <link rel="shortcut icon" href="dist/img/favicon.ico">
+  <link rel="stylesheet" href="dist/main.css">
+</head>
+
+<body>
+  
+  <header class="header">
+    <div class="header__container">
+      <div class="header__title">Some News</div>
+      <div class="nav">
+        <div class="nav__button"></div>
+        <ul class="nav__menu">
+          <li class="nav__menu-item">
+            <div class="nav__menu-item-title">Search</div>
+            <input type="text" class="nav__search">
+          </li>
+          <li class="nav__menu-item">
+            <div class="nav__menu-item-title">Category</div>
+            <div class="nav__radio" id="categories-wrapper"></div>
+          </li>
+          <li class="nav__menu-item">
+            <div class="nav__menu-item-title">Country</div>
+            <div class="nav__radio" id="countries-wrapper"></div>
+          </li>
+          <li class="nav__menu-item">
+            <div class="nav__buttons-wrapper">
+              <div class="nav__menu-button" id="clear">Clear</div>
+              <div class="nav__menu-button" id="apply">Apply</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  
+  <main class="main">
+    <div class="main__container">
+      <div class="show-news-button__wrapper">
+        <div class="show-news-button">Show news</div>
+      </div>
+      <ul class="news"></ul>
+      <ul class="pagination"></ul>
+    </div>
+  </main>
+  
+  <footer class="footer">
+    <div class="footer__container">
+      <div>Created by <a href="https://github.com/Nikolai-Adamovich/task1-es6-newsapi">Mikalai Adamovich</a></div>
+      <div>Powered by <a href="https://translate.yandex.com/">Yandex</a></div>
+      <div>Powered by <a href="https://newsapi.org">News API</a></div>
+    </div>
+  </footer>
+  
+  <script src="dist/main.js"></script>
+  
+</body>
+</html>
