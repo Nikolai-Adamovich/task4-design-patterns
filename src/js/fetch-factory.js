@@ -1,16 +1,23 @@
-const createQuery = ([field, value], i) => {
-  return `${i === 0 ? '?' : '&'}${field}=${encodeURIComponent(value)}`;
+const handler = {
+  apply: function(target, thisArg, argumentsList) {
+    console.log(`URL: ${argumentsList[0]}`);
+    console.log(`Search Params: ${argumentsList[1]}`);
+
+    return target.apply(thisArg, argumentsList);
+  }
 };
 
 const fetchFactory = (method) => {
+  let fetchFunction;
+  
   switch (method) {
-    case 'get': return async (baseUrl, params) => {
+    case 'get': fetchFunction = async (baseUrl, params) => {
       let queryUrl = `${baseUrl}?${params.toString()}`;
       const res = await fetch(queryUrl);
       return res.json();
-    }
+    }; break;
     
-    case 'post': return async (baseUrl, params) => {
+    case 'post': fetchFunction = async (baseUrl, params) => {
       const headers = new Headers({
         'x-api-key': params.get('apiKey')
       });
@@ -20,8 +27,10 @@ const fetchFactory = (method) => {
         headers: headers
       });
       return res.json();
-    }
+    }; break;
   }
+  
+  return new Proxy (fetchFunction, handler);
 };
 
 export default fetchFactory;
