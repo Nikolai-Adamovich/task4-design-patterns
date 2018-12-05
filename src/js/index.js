@@ -4,12 +4,20 @@ import '../scss/style.scss';
 import '@babel/polyfill';
 import 'whatwg-fetch';
 import drawNewsList from './draw-news-list.js';
-import drawError from './draw-error.js';
 import {setMainParameters, setPaginationParameters} from './set-parameters';
 import Pagination from './pagination.js';
 import {mainParameters, paginationParameters} from './url-parameters';
 
 const {categories, countries} = require('./json/menu.json');
+
+const drawError = async (errorMessage) => {
+  const { default: drawError } = await import(
+    /* webpackChunkName: 'draw-error.js' */
+    /* webpackMode: 'lazy' */
+    './draw-error.js'
+  );
+  drawError(errorMessage);
+}
 
 const fetchNews = async () => {
   document.querySelector('.show-news-button__wrapper').style.display = 'none';
@@ -44,7 +52,8 @@ const fetchNews = async () => {
       paginationRoot.classList.toggle('pagination--visible', false);
     }
   } catch (err) {
-    console.log(err);
+    drawError(err);
+    paginationRoot.classList.toggle('pagination--visible', false);
   }
 };
 
@@ -125,6 +134,8 @@ window.addEventListener('load', () => {
   const applyBtn = document.querySelector('#apply');
   
   applyBtn.addEventListener('click', () => {
+    const categoryDefaultInput = document.querySelector('#category-all');
+    const countryDefaultInput = document.querySelector('#country-all');
     let categoryCheckedValue = document.querySelector('input[name="category"]:checked').value;
     let countryCheckedValue = document.querySelector('input[name="country"]:checked').value;
     const searchTextInputValue = searchTextInput.value.trim();
