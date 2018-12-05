@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{282:function(n,r,e){"use strict";e.r(r);var t=function(){var n;return{getInstance:function(){return n||(n={drawError:function(n){document.querySelector(".news").innerHTML='<div class="error">'.concat(n,"</div>")}}),n}}}();r.default=t}}]);
