@@ -11,13 +11,14 @@ import {mainParameters, paginationParameters} from './url-parameters';
 const {categories, countries} = require('./json/menu.json');
 
 const drawError = async (errorMessage) => {
-  const { default: drawError } = await import(
-    /* webpackChunkName: 'draw-error.js' */
+  const { default: errorHandler } = await import(
+    /* webpackChunkName: 'error-handler.js' */
     /* webpackMode: 'lazy' */
-    './draw-error.js'
+    './error-handler.js'
   );
-  drawError(errorMessage);
-}
+  const handler = errorHandler.getInstance();
+  handler.drawError(errorMessage);
+};
 
 const fetchNews = async () => {
   document.querySelector('.show-news-button__wrapper').style.display = 'none';
